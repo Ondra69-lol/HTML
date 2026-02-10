@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Windows 11 Spinner (Fixed)</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #ffffff;
+  }
+
+  svg.spinner {
+    width: 64px;
+    height: 64px;
+    overflow: visible; /* important */
+  }
+
+  circle {
+    fill: none;
+    stroke: #0078D4;
+    stroke-width: 6;
+    stroke-linecap: round;
+  }
+</style>
+</head>
+<body>
+
+<!--
+  ViewBox expanded to give stroke breathing room
+-->
+<svg class="spinner" viewBox="-5 -5 110 110">
+  <!--
+    radius reduced slightly to avoid edge collision
+    circumference ≈ 301.59
+  -->
+  <circle cx="50" cy="50" r="48">
+
+    <!-- Rotation -->
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      values="-90 50 50;810 50 50"
+      dur="7s"
+      repeatCount="indefinite" />
+
+    <!-- Offset -->
+    <animate
+      attributeName="stroke-dashoffset"
+      values="0;0;-150.795"
+      calcMode="spline"
+      keySplines="0.61 1 0.88 1; 0.12 0 0.39 0"
+      keyTimes="0;0.5;1"
+      dur="2s"
+      repeatCount="indefinite" />
+
+    <!-- Arc length -->
+    <animate
+      attributeName="stroke-dasharray"
+      values="0 301.59;150.795 150.795;0 301.59"
+      calcMode="spline"
+      keySplines="0.61 1 0.88 1; 0.12 0 0.39 0"
+      keyTimes="0;0.5;1"
+      dur="2s"
+      repeatCount="indefinite" />
+
+  </circle>
+</svg>
+
+</body>
+</html>
